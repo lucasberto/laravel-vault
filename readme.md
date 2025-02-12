@@ -1,14 +1,23 @@
 # Laravel Vault
 
-A robust Laravel integration for HashiCorp Vault, providing secure secret management with an elegant Laravel-friendly API.
+A package for simple and easy Laravel and HashiCorp Vault integration.
 
 ## Features
 
 - Simple integration with HashiCorp Vault
 - Support for multiple Vault servers
-- Compatible with KV Secrets Engine v1 and v2
-- Laravel 9, 10, and 11 support
 - Clean facade-based API
+
+### Supported Secret Engines (will add more in the future):
+
+- KV Secrets Engine v1
+- KV Secrets Engine v2
+
+## Requirements
+
+- PHP 8.1 or higher
+- Laravel 9, 10, or 11
+- HashiCorp Vault 1.12 or higher
 
 ## Installation
 
