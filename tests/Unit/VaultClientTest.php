@@ -157,7 +157,7 @@ public function test_can_seal_vault()
 public function test_can_unseal_vault()
 {
     $mockedClient = $this->createMockedClient([
-        new Response(204)
+        new Response(200)
     ]);
 
     $vaultClient = new VaultClient($this->config, $mockedClient);

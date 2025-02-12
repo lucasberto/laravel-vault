@@ -63,7 +63,7 @@ class VaultClient {
 
     public function unseal(string $key): bool {
         $response = $this->client->put('/v1/sys/unseal', ['json' => ['key' => $key]]);
-        return $response->getStatusCode() === 204;
+        return $response->getStatusCode() === 200;
     }
 
     public function health(): array {
