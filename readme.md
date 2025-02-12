@@ -77,16 +77,29 @@ And update the `config/vault.php` file accordingly.
 ```php
 use Lucasberto\LaravelVault\Facades\Vault;
 
+
+// List secrets (KV v2)
+$secrets = Vault::listSecrets('path/to/secrets');
+// List secrets (KV v1)
+$secrets = Vault::listSecrets('path/to/secrets', 1);
+
+
 // Get a secret (KV v2)
 $secret = Vault::getSecret('path/to/secret');
 // Using KV v1
 $secret = Vault::getSecret('path/to/secret', 1);
+
 
 // Store a secret (KV v2)
 Vault::putSecret('path/to/secret', [
     'username' => 'admin',
     'password' => 'secret'
 ]);
+// Store a secret (KV v1)
+Vault::putSecret('path/to/secret', [
+    'username' => 'admin',
+    'password' => 'secret'
+], 1);
 
 
 // Delete a secret (KV v2)
