@@ -43,4 +43,10 @@ class VaultClient {
         $response = $this->client->delete("/v1/{$fullPath}");
         return json_decode($response->getBody(), true);
     }
+
+    public function isUnsealed(): bool {
+        $response = $this->client->get('/v1/sys/seal-status');
+        $data = json_decode($response->getBody(), true);
+        return $data['sealed'] ?? false;
+    }
 }

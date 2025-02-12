@@ -79,6 +79,8 @@ use Lucasberto\LaravelVault\Facades\Vault;
 
 // Get a secret (KV v2)
 $secret = Vault::getSecret('path/to/secret');
+// Using KV v1
+$secret = Vault::getSecret('path/to/secret', 1);
 
 // Store a secret (KV v2)
 Vault::putSecret('path/to/secret', [
@@ -86,14 +88,14 @@ Vault::putSecret('path/to/secret', [
     'password' => 'secret'
 ]);
 
-// Using KV v1
-$secret = Vault::getSecret('path/to/secret', 1);
 
 // Delete a secret (KV v2)
 Vault::deleteSecret('path/to/secret');
-
 // Delete a secret (KV v1)
 Vault::deleteSecret('path/to/secret', 1);
+
+// Check if vault is unsealed
+$isUnsealed = Vault::isUnsealed();
 ```
 
 ### Multiple servers
