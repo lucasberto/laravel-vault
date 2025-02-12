@@ -44,16 +44,16 @@ class VaultClient {
         return json_decode($response->getBody(), true);
     }
 
-    public function deleteSecret(string $path, int $kvVersion = 2): array {
+    public function deleteSecret(string $path, int $kvVersion = 2): bool {
         $fullPath = $kvVersion === 2 ? "secret/data/{$path}" : "secret/{$path}";
         $response = $this->client->delete("/v1/{$fullPath}");
-        return json_decode($response->getBody(), true);
+        return $response->getStatusCode() === 204;
     }
 
     public function isUnsealed(): bool {
         $response = $this->client->get('/v1/sys/seal-status');
         $data = json_decode($response->getBody(), true);
-        return $data['sealed'] ?? false;
+        return !$data['sealed'] ?? false;
     }
 
     public function seal(): bool {
