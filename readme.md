@@ -109,6 +109,15 @@ Vault::deleteSecret('path/to/secret', 1);
 
 // Check if vault is unsealed
 $isUnsealed = Vault::isUnsealed();
+
+// Seal vault
+$sealed = Vault::seal();
+
+// Unseal vault (one call per key, after n calls, vault is unsealed)
+Vault::unseal('key');
+
+// Get vault health
+$health = Vault::health();
 ```
 
 ### Multiple servers

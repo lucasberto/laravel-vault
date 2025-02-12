@@ -55,4 +55,20 @@ class VaultClient {
         $data = json_decode($response->getBody(), true);
         return $data['sealed'] ?? false;
     }
+
+    public function seal(): bool {
+        $response = $this->client->put('/v1/sys/seal');
+        return $response->getStatusCode() === 204;
+    }
+
+    public function unseal(string $key): bool {
+        $response = $this->client->put('/v1/sys/unseal', ['json' => ['key' => $key]]);
+        return $response->getStatusCode() === 204;
+    }
+
+    public function health(): array {
+        $response = $this->client->get('/v1/sys/health');
+        return json_decode($response->getBody(), true);
+    }
+    
 }
