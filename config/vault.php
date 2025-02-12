@@ -10,11 +10,5 @@ return [
             'version' => env('VAULT_VERSION', 'v1'),
             'timeout' => env('VAULT_TIMEOUT', 30),
         ],
-        'secondary' => [
-            'address' => env('VAULT_SECONDARY_ADDR'),
-            'token' => env('VAULT_SECONDARY_TOKEN'),
-            'version' => env('VAULT_SECONDARY_VERSION', 'v1'),
-            'timeout' => env('VAULT_SECONDARY_TIMEOUT', 30),
-        ],
     ],
 ];
