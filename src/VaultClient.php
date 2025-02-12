@@ -37,4 +37,10 @@ class VaultClient {
 
         return json_decode($response->getBody(), true);
     }
+
+    public function deleteSecret(string $path, int $kvVersion = 2): array {
+        $fullPath = $kvVersion === 2 ? "secret/data/{$path}" : "secret/{$path}";
+        $response = $this->client->delete("/v1/{$fullPath}");
+        return json_decode($response->getBody(), true);
+    }
 }

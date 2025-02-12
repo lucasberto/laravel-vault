@@ -88,6 +88,12 @@ Vault::putSecret('path/to/secret', [
 
 // Using KV v1
 $secret = Vault::getSecret('path/to/secret', 1);
+
+// Delete a secret (KV v2)
+Vault::deleteSecret('path/to/secret');
+
+// Delete a secret (KV v1)
+Vault::deleteSecret('path/to/secret', 1);
 ```
 
 ### Multiple servers
