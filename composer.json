@@ -1,0 +1,57 @@
+{
+    "name": "lucasberto/laravel-vault",
+    "description": "An easy Laravel integration for HashiCorp Vault",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "vault",
+        "hashicorp",
+        "secrets",
+        "encryption",
+        "security",
+        "key-value",
+        "credentials",
+        "storage"
+    ],
+    "authors": [
+        {
+            "name": "Lucas Berto"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+
+    "autoload": {
+        "psr-4": {
+            "Lucasberto\\LaravelVault\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lucasberto\\LaravelVault\\Tests\\": "tests/"
+        }
+    },
+    
+    
+    "require": {
+        "php": "^8.1|^8.2",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/support": "^9.0|^10.0|^11.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.0|^9.0"
+    },
+    
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lucasberto\\LaravelVault\\VaultServiceProvider"
+            ],
+            "aliases": {
+                "Vault": "Lucasberto\\LaravelVault\\Facades\\Vault"
+            }
+        }
+    }
+}
