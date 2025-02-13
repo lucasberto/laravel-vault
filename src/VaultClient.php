@@ -33,7 +33,7 @@ class VaultClient {
         $fullPath = $kvVersion === 2 ? "secret/data/{$path}" : "secret/{$path}";
         $payload = $kvVersion === 2 ? ['data' => $data] : $data;
 
-        $response = $this->client->put("/v1/{$fullPath}", ['json' => $payload]);
+        $response = $this->client->post("/v1/{$fullPath}", ['json' => $payload]);
 
         return json_decode($response->getBody(), true);
     }
