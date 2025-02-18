@@ -46,7 +46,7 @@ VAULT_TOKEN=your-token-here
 
 # Optional configs
 VAULT_TIMEOUT=10   # Default: 30
-VAULT_KV_ROOT=secret # Default: kv-v2
+VAULT_KV_ROOT=kv-v2 # Default: secret
 ```
 
 If you want to use multiple Vault servers, you can add more addresses and tokens to the `.env` file:
@@ -57,7 +57,7 @@ VAULT_SECONDARY_TOKEN=another-token
 
 # Optional configs
 VAULT_SECONDARY_TIMEOUT=20   # Default: 30
-VAULT_SECONDARY_KV_ROOT=secret2 # Default: kv-v2
+VAULT_SECONDARY_KV_ROOT=kv-v2 # Default: secret
 ```
 
 And update the `config/vault.php` file accordingly.
@@ -68,13 +68,13 @@ And update the `config/vault.php` file accordingly.
             'address' => env('VAULT_ADDR', 'http://127.0.0.1:8200'),
             'token' => env('VAULT_TOKEN'),
             'timeout' => env('VAULT_TIMEOUT', 30),
-            'kv_root' => env('VAULT_KV_ROOT', 'kv-v2'),
+            'kv_root' => env('VAULT_KV_ROOT', 'secret'),
         ],
         'secondary' => [
             'address' => env('VAULT_SECONDARY_ADDR'),
             'token' => env('VAULT_SECONDARY_TOKEN'),
             'timeout' => env('VAULT_SECONDARY_TIMEOUT', 30),
-            'kv_root' => env('VAULT_SECONDARY_KV_ROOT', 'kv-v2'),
+            'kv_root' => env('VAULT_SECONDARY_KV_ROOT', 'secret'),
         ],
     ],
 ```
