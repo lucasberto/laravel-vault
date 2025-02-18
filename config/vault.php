@@ -9,6 +9,7 @@ return [
             'token' => env('VAULT_TOKEN'),
             'version' => env('VAULT_VERSION', 'v1'),
             'timeout' => env('VAULT_TIMEOUT', 30),
+            'kv_root' => env('VAULT_KV_ROOT', 'secret'),
         ],
     ],
 ];

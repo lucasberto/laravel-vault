@@ -21,7 +21,8 @@ class VaultClient {
     }
 
     public function getSecret(string $path, int $kvVersion = 2): array {
-        $fullPath = $kvVersion == 2 ? "secret/data/{$path}" : "secret/{$path}";
+        $kvRoot = $this->config['kv_root'];
+        $fullPath = $kvVersion == 2 ? "{$kvRoot}/data/{$path}" : "{$kvRoot}/{$path}";
         $response = $this->client->get("/v1/{$fullPath}");
 
         $data = json_decode($response->getBody(), true);
@@ -30,7 +31,9 @@ class VaultClient {
     }
 
     public function putSecret(string $path, array $data, int $kvVersion = 2): array {
-        $fullPath = $kvVersion === 2 ? "secret/data/{$path}" : "secret/{$path}";
+        $kvRoot = $this->config['kv_root'];
+
+        $fullPath = $kvVersion === 2 ? "{$kvRoot}/data/{$path}" : "{$kvRoot}/{$path}";
         $payload = $kvVersion === 2 ? ['data' => $data] : $data;
 
         $response = $this->client->post("/v1/{$fullPath}", ['json' => $payload]);
@@ -39,13 +42,17 @@ class VaultClient {
     }
 
     public function listSecrets(string $path, int $kvVersion = 2): array {
-        $fullPath = $kvVersion === 2 ? "secret/metadata/{$path}" : "secret/{$path}";
+        $kvRoot = $this->config['kv_root'];
+
+        $fullPath = $kvVersion === 2 ? "{$kvRoot}/metadata/{$path}" : "{$kvRoot}/{$path}";
         $response = $this->client->get("/v1/{$fullPath}");
         return json_decode($response->getBody(), true);
     }
 
     public function deleteSecret(string $path, int $kvVersion = 2): bool {
-        $fullPath = $kvVersion === 2 ? "secret/data/{$path}" : "secret/{$path}";
+        $kvRoot = $this->config['kv_root'];
+
+        $fullPath = $kvVersion === 2 ? "{$kvRoot}/data/{$path}" : "{$kvRoot}/{$path}";
         $response = $this->client->delete("/v1/{$fullPath}");
         return $response->getStatusCode() === 204;
     }
