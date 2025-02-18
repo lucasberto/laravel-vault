@@ -129,8 +129,15 @@ Vault::unseal('key');
 $health = Vault::health();
 
 // It is also possible to use a custom client (of type GuzzleHttp\Client)
-$httpClient = new \GuzzleHttp\Client();
-$vaultClient = new VaultClient($this->config, $httpClient);
+$config = app()->config['vault']['servers']['main'];
+$httpClient = new \GuzzleHttp\Client([
+    'base_uri' => $config['address'],
+    'headers' => [
+        'X-Vault-Token' => $config['token'],
+    ],
+    'timeout' => $config['timeout'],
+]);
+$vaultClient = new Lucasberto\LaravelVault\VaultClient($config, $httpClient);
 $vaultClient->getSecret('path/to/secret');
 ```
 
