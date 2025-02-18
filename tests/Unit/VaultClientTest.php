@@ -20,7 +20,8 @@ class VaultClientTest extends TestCase
             'address' => 'http://localhost:8200',
             'token' => 'test-token',
             'version' => 'v1',
-            'timeout' => 30
+            'timeout' => 30,
+            'kv_root' => 'secret'
         ];
     }
 
@@ -157,13 +158,15 @@ public function test_can_seal_vault()
 public function test_can_unseal_vault()
 {
     $mockedClient = $this->createMockedClient([
-        new Response(200)
+        new Response(200, body: json_encode([
+            'sealed' => false
+        ]))
     ]);
 
     $vaultClient = new VaultClient($this->config, $mockedClient);
     $result = $vaultClient->unseal('unseal-key');
     
-    $this->assertTrue($result);
+    $this->assertFalse($result['sealed']);
 }
 
 public function test_can_check_health()
