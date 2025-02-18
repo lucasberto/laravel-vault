@@ -18,6 +18,11 @@ class VaultClient {
                 'X-Vault-Token' => $config['token'],
             ]
         ]);
+
+        // For backwards compatibility
+        if(!isset($config['kv_root'])) {
+            $this->config['kv_root'] = 'secret';
+        }
     }
 
     public function getSecret(string $path, int $kvVersion = 2): array {
